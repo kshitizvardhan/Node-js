@@ -19,7 +19,18 @@ app.get('/',(req,res) => {
     // The 'req' parameter represents the request object, containing information about the incoming request.
     // The 'res' parameter represents the response object, used to send a response back to the client.
     // In this handler function, 'res.send('Hello World')' sends the string 'Hello World' as the response to the client.
-    res.send('Hello World');
+    res.send("Hello World")
+})
+
+app.get('/route-handler',(req,res) => {
+    res.json({
+        name: "Kshitiz",
+        age: 18,
+        list: [{
+            fruit: 2,
+            veggies: 3
+        },90,34]
+    });
 })
 
 app.listen(port, ()=>{
