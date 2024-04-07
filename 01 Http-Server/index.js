@@ -19,7 +19,10 @@ app.get('/',(req,res) => {
     // The 'req' parameter represents the request object, containing information about the incoming request.
     // The 'res' parameter represents the response object, used to send a response back to the client.
     // In this handler function, 'res.send('Hello World')' sends the string 'Hello World' as the response to the client.
-    res.send("Hello World")
+    res.status(404).send("Hello World")
+
+    // we can use the above way to explicitly send a 404 "Not Found" response even if the resource is actually available. This is often done 
+    // in scenarios where you want to handle specific cases differently or send a generic error response regardless of the actual resource availability.
 })
 
 app.get('/route-handler',(req,res) => {
@@ -71,6 +74,7 @@ app.get('/send-html',(req,res) => {
 
 app.listen(port, ()=>{
     console.log(`App listening on port ${port}`);
+    console.log(`Visit URL: http://localhost:${port}`);     // using https won't work as the protocol we are using here http
 })
 /*
 simply, application will be taking this port...and use it to listen for incoming connections.
@@ -88,3 +92,12 @@ The console.log() statement inside the callback function will print a message to
 // so we don't need the http module... the express internally provides us this...
 // some very smart people have written all the code of http module....like how will get,post,delete....etc methods will work...
 // we are just using these methods to write our own application specific code...under the hood http module takes care of its functioning.
+
+
+
+
+// fs is a library that gives us high level constructs
+// to do fileSystem stuff (read from a file, write to a file...)
+
+// express is a library that gives us high level constructs 
+// to create http servers
