@@ -33,6 +33,47 @@ app.get('/route-handler',(req,res) => {
     });
 })
 
+const bodyParser = require('body-parser');
+
+app.use(bodyParser.json());
+
+app.post('/conversation',(req,res) => {
+    console.log(req.headers);
+    console.log(req.body);      // we recieve undefined...
+    res.json({
+        msg: "2 + 2 = 4"
+    })
+})
+
+/*
+If you're receiving undefined for req.body in your Express.js route handler, it typically means that we haven't configured body parsing middleware for your application. To parse incoming request bodies, you can use middleware like body-parser
+We will see about middlewares next
+
+After using body-parser we did'nt recieved undefined....rather the json we sent using postman
+becoz the express doesnt provides this feature of reading body...
+so we handle them using other library called "Node.js body parsing middleware".
+run npm i body-parser to install the dependency
+
+Parse incoming request bodies in a middleware before your handlers, available under the req.body property.
+
+This module provides the following parsers:
+    - JSON body parser
+    - Raw body parser
+    - Text body parser
+    - URL-encoded form body parser
+*/
+
+app.get('/send-html',(req,res) => {
+    res.send("<b> Hello Kshitiz </b>")
+    // basically a string is sent...but browser sees that it look likes a sort of html.. so like this html is sent without .html file
+    // sending a string response that contains HTML markup. When the browser receives this response, it interprets the content as HTML and renders it accordingly.
+})
+
 app.listen(port, ()=>{
     console.log(`App listening on port ${port}`);
 })
+
+
+// so we don't need the http module... the express internally provides us this...
+// some very smart people have written all the code of http module....like how will get,post,delete....etc methods will work...
+// we are just using these methods to write our own application specific code...under the hood http module takes care of its functioning.
