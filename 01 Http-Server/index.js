@@ -72,6 +72,17 @@ app.get('/send-html',(req,res) => {
 app.listen(port, ()=>{
     console.log(`App listening on port ${port}`);
 })
+/*
+simply, application will be taking this port...and use it to listen for incoming connections.
+
+app.listen() --> means that your application will start listening for incoming connections on the specified port.
+
+The port variable is typically defined earlier in your code and represents the port number that your application will listen on. When a client sends a request to your server on that port, your Express application will handle the request and send back a response.
+
+The console.log() statement inside the callback function will print a message to the console indicating that your application is now listening on the specified port. This is useful for debugging and monitoring purposes, as it lets you know that your server has started successfully and is ready to handle requests.
+
+
+*/
 
 
 // so we don't need the http module... the express internally provides us this...
