@@ -54,7 +54,7 @@ app.put("/", (req,res) => {
 // removing all the unhealthy kidneys
 // also adding validation...ki if no unhealthy kidney return status code 411
 app.delete("/", (req,res) => {
-    if(checkUnhealthyKidney()){
+    if(checkUnhealthyKidney()){     // if there is unhealthy kidney then only run the logic
         const newKidneys = [];
         for(let i=0; i<users[0].kidneys.length; i++){
             if(users[0].kidneys[i].healthy){
@@ -67,7 +67,7 @@ app.delete("/", (req,res) => {
         res.json({
             message: "All unhealthy kidneys deleted"
         })
-    } else {
+    } else {                                    // else run this logic and send status code
         res.status(411).json({
             message: "No unhealthy kidneys"
         })
