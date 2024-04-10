@@ -55,6 +55,7 @@ app.get("/health-Checkup", auth, calculateRequests, (req, res) => {
 
 const port = 3000;
 app.listen(port);
+
 // now the code looks more readable...and handlers can be understood easily...
 // whenever the get request is hit the auth middleware authenticates the data and then further the req,res callbacks are done
 // the control moves further only if the next() middleware function is hit in the callback functions...if not soo...it should return the expected error
@@ -76,4 +77,16 @@ app.listen(port);
 
 /*
 all routes defined after app.use(auth) and app.use(calculateRequests) will automatically go through these middleware functions without needing to specify them for each individual route. This makes the code cleaner and more maintainable.
+
+Points to remember :-
+ 1. we can use this middleware for all the routes in one go 
+ 
+ Syntax:-  app.use(auth)
+
+ 2. we can use this middleware for a specific route
+
+  Syntax:- app.use('/signIn', auth, (req, res) => {
+    res.json({ message: 'Welcome to the Login Page' })
+  })
+
 */
