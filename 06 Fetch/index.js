@@ -2,7 +2,7 @@ const express = require('express');
 const fetch = require('node-fetch');
 const app = express();
 
-async function getData(req,res,next) {
+async function getData() {
     const response = await fetch("https://fakerapi.it/api/v1/persons")
     const data = await response.json();
     return data;
