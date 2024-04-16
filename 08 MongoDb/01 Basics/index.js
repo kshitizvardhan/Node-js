@@ -1,11 +1,13 @@
 const mongoose = require('mongoose');
-const express = require('express'); // now httpfiy the thingy....firstlu understood without this
+const express = require('express'); // now httpfiy the thingy....firstly understood without this
 const app = express();
 
 app.use(express.json());
 
 mongoose.connect("mongodb+srv://admin:3XUi07TpM67Z7YZJ@cluster0.bxeatmc.mongodb.net/user_app")
 
+
+// whenever using functionality on db you need to use this.... User.(functionName)
 const User = mongoose.model("users", {
     username: String,
     email: String,
