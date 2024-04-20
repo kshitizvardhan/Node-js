@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hard Assignment</title>
+    <script>
+        
+        let timeout;
+        function deBounce(){
+            // if the function is called again...clears the old clock..
+            clearTimeout(timeout);
+            // start a new clock
+            timeout = setTimeout(function (){       // EXECUTE After 1s...
+                simpleInterest()
+            },1000);
+        }
+
+        async function simpleInterest(){
+            const principal = document.getElementById("principal").value;
+            const rate = document.getElementById("rate").value;
+            const time = document.getElementById("time").value;
+
+            const response = await fetch("https://sum-server.100xdevs.com/interest?principal=" + parseInt(principal) + "&rate=" + parseInt(rate) + "&time=" + parseInt(time));
+            const data = await response.json();
+            console.log(data);
+            
+            document.getElementById("ans").innerHTML =  "The total amount is " + data.total + ", and interest is " + data.interest;
+        }
+
+    </script>
+</head>
+<body>
+    <div class="box">
+        <input oninput="deBounce()" id="principal" type="text" placeholder="Enter Principal Amount">
+        <input oninput="deBounce()" id="rate" type="text" placeholder="Enter Rate">
+        <input oninput="deBounce()" id="time" type="text" placeholder="Enter Time">
+        <div id="ans"></div>
+    </div>
+</body>
+</html>
